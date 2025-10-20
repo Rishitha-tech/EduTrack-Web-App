@@ -1,0 +1,69 @@
+You are my DevOps helper. Do ALL of the following automatically in this EduTrack workspace. Be explicit about what you changed and paste links at the end.
+
+GOAL:
+- Sync THIS Replit project to my GitHub repo and make that repo clean and portfolio-ready.
+- Use my existing repo if present: Rishitha-tech/EduTrack. If it is not connected, connect it. If it doesn’t exist, create a PUBLIC repo named “EduTrack”.
+- Keep the Replit version as the source of truth. If any conflicts happen, KEEP Replit’s files and overwrite GitHub.
+
+TASKS (perform in order):
+
+1) QUICK HEALTH CHECK
+   - Ensure the app starts with the correct port for Replit (PORT=5000 and host 0.0.0.0). 
+   - If code uses a different port (like 3000), set it to use process.env.PORT || 5000 and bind 0.0.0.0.
+   - Do NOT change any app logic beyond what’s needed to run.
+   - If a `.env` exists with PORT=3000, change it to PORT=5000.
+
+2) CONNECT GITHUB REMOTE
+   - Open the Version Control (Git) panel. If not connected, connect to my GitHub and select the existing repo `Rishitha-tech/EduTrack`.
+   - If the repo does not exist, create a new PUBLIC repo named EXACTLY `EduTrack`, then connect to it.
+   - Verify with `git remote -v` that origin is https://github.com/Rishitha-tech/EduTrack.git.
+
+3) SYNC STRATEGY (Replit wins)
+   - First try: pull with rebase to detect divergence:
+        git fetch origin
+        git checkout -B main
+        git pull --rebase origin main --allow-unrelated-histories
+   - If ANY conflicts appear, ABORT the rebase and force Replit’s version:
+        git rebase --abort
+        git add .
+        git commit -m "Force sync: make Replit workspace the source of truth"
+        git push --force origin main
+   - If no conflicts, just:
+        git add .
+        git commit -m "Sync Replit workspace with GitHub repo"
+        git push -u origin main
+
+4) README.md (create or overwrite with a professional portfolio version)
+   - Create a clean README.md at repo root with:
+     Title: EduTrack – AI-Assisted Learning Analytics
+     Short tagline: Heatmap-based video engagement insights for educators.
+     Sections:
+       • Live Demo (placeholder to add later, format as a button-style link)
+       • Features (3–6 bullets: attention drop-off detection, event tracking, teacher dashboard, etc.)
+       • Tech Stack (bullets: HTML/CSS/JS OR Next.js/Node.js, MongoDB, Replit dev; GitHub for VC)
+       • Getting Started (install, run, environment variables if any)
+       • Folder Structure (top-level folders with 1-line purpose)
+       • Roadmap (2–3 planned items)
+       • Contact (email)
+   - Keep it concise, formatted, and recruiter-friendly (use headings and code blocks where needed).
+
+   Example Live Demo line to include (DO NOT publish anything new yet): 
+   > Live Demo: _to be deployed on Vercel (https://edutrack.vercel.app)_
+
+   Commit README:
+        git add README.md
+        git commit -m "Add professional README with features, tech stack, and setup"
+        git push origin main
+
+5) OUTPUT FOR ME
+   - Print the final GitHub repository URL.
+   - Print the latest commit hash and message.
+   - Confirm that the README exists at the repo root.
+   - Confirm that origin is set to Rishitha-tech/EduTrack and branch is main.
+   - Briefly list any file changes you made (e.g., port fix, .env change).
+
+IMPORTANT:
+- If at any step Git asks for advice about merge conflicts, do NOT prompt me; automatically keep Replit’s version and proceed with the push as described.
+- Do not create additional branches; use `main`.
+- Do not set up any paid services.
+- Be terse in logs but include final links clearly.
