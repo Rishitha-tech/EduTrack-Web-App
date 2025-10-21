@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: edutrack
+    env: node
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: MONGODB_URI
+        sync: false   # we will set the value in the Render UI
